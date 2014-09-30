@@ -1,91 +1,113 @@
 package com.example.chances;
 
-import android.app.Activity;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.view.View.OnClickListener;
-import android.content.Intent;
-import android.view.View;
 import java.util.ArrayList;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
 public class LoginHActivity extends Activity {
-	 EditText txtUsername;
-	    EditText txtPass;
-	    Button btnLogin;
-	    TextView txtRegister;
-	    JSONArray user = null;
-	    TextView  txtError;
-	    private static String url = "http://ing-sis.jairoesc.com/sessions";
-	    private static final String TAG_TOKEN = "auth_token";
+	EditText txtUsername;
+	EditText txtPass;
+	Button btnLogin;
+	TextView txtRegister;
+	TextView txtError;
+	String response = null;
+	JSONObject jsonObject;
+	private static String url = "http://ing-sis.jairoesc.com/sessions";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login_h);
-		
-		txtUsername = (EditText)this.findViewById(R.id.txtUsername);
-        txtPass = (EditText)this.findViewById(R.id.txtPass);
-        btnLogin = (Button)this.findViewById(R.id.send);
-        txtError = (TextView)this.findViewById(R.id.lblMensaje);
-        
-        btnLogin.setOnClickListener(new OnClickListener(){
-            public void onClick(View v){
-            	
-            	new JSONParse().execute(new String[]{txtUsername.getText().toString(), txtPass.getText().toString()});
-            	
-            	/*Intent listview = new Intent(LoginHActivity.this,MainFragmentActivity.class);
-                LoginHActivity.this.startActivity(listview);
-                finish();*/
-            }
-        });
-        txtRegister = (TextView)this.findViewById(R.id.txtRegister);
-        txtRegister.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent itemIntent = new Intent (LoginHActivity.this,RegisterActivity.class);
-                LoginHActivity.this.startActivity(itemIntent);
-                finish();
 
-            }
-        });
+		txtUsername = (EditText) this.findViewById(R.id.txtUsername);
+		txtPass = (EditText) this.findViewById(R.id.txtPass);
+		btnLogin = (Button) this.findViewById(R.id.send);
+		txtError = (TextView) this.findViewById(R.id.lblMensaje);
+
+		btnLogin.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				String uname = txtUsername.getText().toString();
+				String pwd = txtPass.getText().toString();
+				validateUserTask task = new validateUserTask();
+				task.execute(new String[] { uname, pwd });
+
+			}
+		});
+		txtRegister = (TextView) this.findViewById(R.id.txtRegister);
+		txtRegister.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent itemIntent = new Intent(LoginHActivity.this,
+						RegisterActivity.class);
+				LoginHActivity.this.startActivity(itemIntent);
+				finish();
+
+			}
+		});
 	}
-	
-	private class JSONParse extends AsyncTask<String, Void, JSONObject>{
 
+	private class validateUserTask extends AsyncTask<String, Void, String> {
 		@Override
-		protected JSONObject doInBackground(String... params) {
-			
+		protected String doInBackground(String... params) {
+			// TODO Auto-generated method stub
 			ArrayList<NameValuePair> postParameters = new ArrayList<NameValuePair>();
-            postParameters.add(new BasicNameValuePair("email", params[0] ));
-            postParameters.add(new BasicNameValuePair("password", params[1] ));
-			JSONParser jParser = new JSONParser();
-	        // Getting JSON from URL
-	        JSONObject json = jParser.executeHttpPost(url,postParameters);
-	        return json;
-		}
+			postParameters.add(new BasicNameValuePair("email", params[0]));
+			postParameters.add(new BasicNameValuePair("password", params[1]));
+			String res = null;
+			try {
+				response = CustomHttpClient
+						.executeHttpPost(url, postParameters);
+				res = response.toString();
+				Log.e("devuelto por servidor", res.toString());
+				res = res.replaceAll("\\s+", "");
+			} catch (Exception e) {
+				txtError.setText(e.toString());
+			}
+			return res;
+		}// close doInBackground
 
 		@Override
-		protected void onPostExecute(JSONObject result) {
+		protected void onPostExecute(String result) {
+
 			try {
-				user = result.getJSONArray(TAG_TOKEN);
+				jsonObject = new JSONObject(result);
+				Log.e("JSONConvertido", jsonObject.toString());
+				if (jsonObject.getString("auth_token") != null) {
+
+					Intent itemIntent = new Intent(LoginHActivity.this,
+							RegisterActivity.class);
+					LoginHActivity.this.startActivity(itemIntent);
+				}
+
 			} catch (JSONException e) {
-				 txtError.setText("Error no Pudo Acceder");
-			} 
-			Intent itemIntent = new Intent (LoginHActivity.this,RegisterActivity.class);
-            LoginHActivity.this.startActivity(itemIntent);	
-		
-	}
+				Log.e("ERROR", "JSONERROR");
+			}
+
+			/*
+			 * if (result.equals("1")) { // navigate to Main Menu Intent
+			 * listview = new Intent(LoginHActivity.this,
+			 * RegisterActivity.class);
+			 * LoginHActivity.this.startActivity(listview); } else {
+			 * txtError.setText("Sorry!! Incorrect Username or Password"); }
+			 */
+		}// close onPostExecute
 	}
 
 	@Override
