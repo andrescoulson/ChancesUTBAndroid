@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -91,23 +90,17 @@ public class LoginHActivity extends Activity {
 				Log.e("JSONConvertido", jsonObject.toString());
 				if (jsonObject.getString("auth_token") != null) {
 
-					Intent itemIntent = new Intent(LoginHActivity.this,
-							RegisterActivity.class);
+					Intent itemIntent = new Intent(LoginHActivity.this,RegisterActivity.class);
 					LoginHActivity.this.startActivity(itemIntent);
 				}
 
 			} catch (JSONException e) {
 				Log.e("ERROR", "JSONERROR");
+				txtError.setText("Sorry!! Incorrect Username or Password");
+
 			}
 
-			/*
-			 * if (result.equals("1")) { // navigate to Main Menu Intent
-			 * listview = new Intent(LoginHActivity.this,
-			 * RegisterActivity.class);
-			 * LoginHActivity.this.startActivity(listview); } else {
-			 * txtError.setText("Sorry!! Incorrect Username or Password"); }
-			 */
-		}// close onPostExecute
+		} 
 	}
 
 	@Override
