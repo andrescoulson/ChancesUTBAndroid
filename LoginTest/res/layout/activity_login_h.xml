@@ -37,7 +37,16 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:padding="1dp"
-        android:text="Continuar" />
+        android:text="enviar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Registrar"
+        android:id="@+id/txtRegister"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.05" />
 
     
 
@@ -50,15 +59,6 @@
         android:textColor="#FF0000"
         android:textSize="20sp"
         android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/txtRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.05"
-        android:text="¿No tienes cuenta en Chanceros?"
-        android:layout_gravity="center_horizontal"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </LinearLayout>
 

@@ -8,17 +8,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="Name"
+        android:hint="Username"
         android:ems="10"
         android:id="@+id/txtUsername" />
-
-    <EditText
-        android:id="@+id/txtLastName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" 
-        android:hint="Lastname"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -29,31 +21,12 @@
         android:hint="Email" />
 
     <EditText
-        android:id="@+id/txtREmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:hint="Repeat Email" />
-
-    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/txtPassword"
         android:hint="Password" />
-
-    <EditText
-        android:id="@+id/txtRPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:hint="Confirm Password" >
-
-        <requestFocus />
-    </EditText>
 
     <Button
         style="?android:attr/buttonStyleSmall"

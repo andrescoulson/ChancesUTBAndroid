@@ -13,11 +13,8 @@ import android.content.Intent;
 public class RegisterActivity extends Activity {
 	
 	EditText username;
-	EditText lastname;
     EditText email;
-    EditText remail;
     EditText password;
-    EditText rpassword;
     TextView lblogin;
     Button registro;
 
@@ -30,19 +27,12 @@ public class RegisterActivity extends Activity {
         email = (EditText)this.findViewById(R.id.txtEmail);
         password = (EditText)this.findViewById(R.id.txtPassword);
         registro = (Button)this.findViewById(R.id.btnRegister);
-        lastname = (EditText)this.findViewById(R.id.txtLastName);
-        rpassword = (EditText)this.findViewById(R.id.txtRPassword);
-        remail = (EditText)this.findViewById(R.id.txtREmail);
 
         registro.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 String name = username.getText().toString();
-                String Lastname = lastname.getText().toString();
                 String InputEmai = email.getText().toString();
                 String InputPassword = password.getText().toString();
-                String RInputEmail = remail.getText().toString();
-                String RInputPassword = rpassword.getText().toString();                
-                
             }
 
         });
@@ -51,7 +41,7 @@ public class RegisterActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent itemIntent = new Intent(RegisterActivity.this,LoginHActivity.class);
-                startActivity(itemIntent);
+                RegisterActivity.this.startActivity(itemIntent);
                 finish();
 
             }
