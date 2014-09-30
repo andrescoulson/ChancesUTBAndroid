@@ -71,8 +71,7 @@ public class LoginHActivity extends Activity {
 			postParameters.add(new BasicNameValuePair("password", params[1]));
 			String res = null;
 			try {
-				response = CustomHttpClient
-						.executeHttpPost(url, postParameters);
+				response = CustomHttpClient.executeHttpPost(url, postParameters);
 				res = response.toString();
 				Log.e("devuelto por servidor", res.toString());
 				res = res.replaceAll("\\s+", "");
@@ -89,9 +88,11 @@ public class LoginHActivity extends Activity {
 				jsonObject = new JSONObject(result);
 				Log.e("JSONConvertido", jsonObject.toString());
 				if (jsonObject.getString("auth_token") != null) {
-
-					Intent itemIntent = new Intent(LoginHActivity.this,RegisterActivity.class);
-					LoginHActivity.this.startActivity(itemIntent);
+					
+					Intent MyIntent = new Intent(LoginHActivity.this,ListChanceActivity.class);
+					startActivity(MyIntent);
+					finish();
+					
 				}
 
 			} catch (JSONException e) {
