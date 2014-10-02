@@ -30,7 +30,7 @@ public final class R {
         public static final int imageView=0x7f080001;
         public static final int imageView_image=0x7f08000f;
         public static final int lblLogin=0x7f08000e;
-        public static final int lblMensaje=0x7f080006;
+        public static final int lblMensaje=0x7f080005;
         public static final int listView_listado=0x7f080000;
         public static final int pager=0x7f080007;
         public static final int send=0x7f080004;
@@ -42,7 +42,7 @@ public final class R {
         public static final int txtPassword=0x7f08000b;
         public static final int txtREmail=0x7f08000a;
         public static final int txtRPassword=0x7f08000c;
-        public static final int txtRegister=0x7f080005;
+        public static final int txtRegister=0x7f080006;
         public static final int txtUsername=0x7f080002;
     }
     public static final class layout {
