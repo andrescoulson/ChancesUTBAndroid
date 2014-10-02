@@ -33,7 +33,7 @@ public class RegisterActivity extends Activity {
 	Button registro;
 	String response = null;
 	JSONObject jsonObject;
-	private static String url = "http://ing-sis.jairoesc.com/user";
+	private static String url = "http://ing-sis.jairoesc.com/singup";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

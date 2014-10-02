@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -92,6 +93,20 @@ public class LoginHActivity extends Activity {
 	}
 
 	private class validateUserTask extends AsyncTask<String, Void, String> {
+		
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			
+			ProgressDialog progressDialog = new ProgressDialog(LoginHActivity.this);
+	        progressDialog.setCancelable(true);
+	        progressDialog.setMessage("Loading...");
+	        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+	        progressDialog.setProgress(0);
+	        progressDialog.show();
+		}
+		
+
 		@Override
 		protected String doInBackground(String... params) {
 			
