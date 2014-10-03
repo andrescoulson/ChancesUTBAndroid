@@ -103,6 +103,7 @@ public class LoginHActivity extends Activity {
 	        progressDialog.setMessage("Loading...");
 	        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 	        progressDialog.setProgress(0);
+	        progressDialog.setMax(20);
 	        progressDialog.show();
 		}
 		
@@ -144,18 +145,12 @@ public class LoginHActivity extends Activity {
 				Log.e("JSONConvertido", jsonObject.toString());
 				
 				if (jsonObject.getString("auth_token") != null) {
-<<<<<<< HEAD
-
-					Intent itemIntent = new Intent(LoginHActivity.this,RegisterActivity.class);
-					itemIntent.putExtra(name, value)
-					startActivity(itemIntent);
-=======
-					
+			
 					Intent MyIntent = new Intent(LoginHActivity.this,MainFragmentActivity.class);
 					startActivity(MyIntent);
 					finish();
 					
->>>>>>> origin/master
+
 				}
 
 			} catch (JSONException e) {

@@ -1,6 +1,7 @@
 package com.example.chances;
 
 import android.app.Activity;
+import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.view.View;
+import android.content.DialogInterface;
 import android.content.Intent;
 
 import java.util.ArrayList;
@@ -19,7 +21,9 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.os.AsyncTask;
+import android.app.AlertDialog;
 
 public class RegisterActivity extends Activity {
 
@@ -33,12 +37,14 @@ public class RegisterActivity extends Activity {
 	Button registro;
 	String response = null;
 	JSONObject jsonObject;
-	private static String url = "http://ing-sis.jairoesc.com/singup";
+	private static String url = "http://ing-sis.jairoesc.com/signup";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
+		
+		
 
 		username = (EditText) this.findViewById(R.id.txtUsername);
 		email = (EditText) this.findViewById(R.id.txtEmail);
@@ -55,6 +61,7 @@ public class RegisterActivity extends Activity {
 						remail.getText().toString())
 						&& ValidarRegistro.ValidarPass(password.getText()
 								.toString(), rpassword.getText().toString())) {
+					
 					String name = username.getText().toString();
 					String Lastname = lastname.getText().toString();
 					String InputEmai = email.getText().toString();
@@ -63,8 +70,7 @@ public class RegisterActivity extends Activity {
 					
 
 					validateRegisterTask task = new validateRegisterTask();
-					task.execute(new String[] { name, Lastname, InputEmai,
-							InputPassword, RInputEmail });
+					task.execute(new String[] { name, Lastname, InputEmai, RInputEmail, InputPassword  });
 
 				} else {
 					Toast.makeText(getBaseContext(),
@@ -101,9 +107,8 @@ public class RegisterActivity extends Activity {
 			postParameters.add(new BasicNameValuePair("name", params[0]));
 			postParameters.add(new BasicNameValuePair("lastname", params[1]));
 			postParameters.add(new BasicNameValuePair("email", params[2]));
-			postParameters
-					.add(new BasicNameValuePair("confirmemail", params[4]));
-			postParameters.add(new BasicNameValuePair("password", params[3]));
+			postParameters.add(new BasicNameValuePair("confirmemail", params[3]));
+			postParameters.add(new BasicNameValuePair("password", params[4]));
 
 			String res = null;
 
@@ -126,27 +131,45 @@ public class RegisterActivity extends Activity {
 		}
 
 		@Override
-		protected void onPostExecute(String result) {
+		protected void onPostExecute(String result) {		
+			
+			AlertDialog alertDialog = new AlertDialog.Builder(RegisterActivity.this).create();
+			
 			
 			try {
 
 				jsonObject = new JSONObject(result);
 				Log.e("JSONConvertido", jsonObject.toString());
 				
-				Toast.makeText(getBaseContext(),
-						"Usuario Registrado.... ",
-						Toast.LENGTH_SHORT).show();
+				if(jsonObject != null){
+					
+					
+					alertDialog.setTitle("Registro Exitoso");
+					alertDialog.setMessage("Aceptar");
+					alertDialog.setButton(-1, "OK",new DialogInterface.OnClickListener()
+					{
+
+						@Override
+						public void onClick(DialogInterface arg0, int arg1) {
+							
+							Intent itemIntent = new Intent(RegisterActivity.this,
+									LoginHActivity.class);
+							startActivity(itemIntent);
+						}
 						
- 
-        				
+					});
+					
+					alertDialog.show();
+				
+				
+				}					       				
 
 			} catch (JSONException e) {
-				Log.e("ERROR", "JSONERROR");
+				Log.e("ERROR", result);
 				Toast.makeText(getBaseContext(),
 						"ERROR no c de q.... ",
 						Toast.LENGTH_SHORT).show();
-
-			}
+				}
 		}
 
 		@Override
@@ -158,6 +181,7 @@ public class RegisterActivity extends Activity {
 	        progressDialog.setMessage("Loading...");
 	        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 	        progressDialog.setProgress(0);
+	        progressDialog.setMax(5);
 	        progressDialog.show();
 		}
 

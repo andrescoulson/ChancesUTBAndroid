@@ -10,7 +10,8 @@
         android:inputType="textPersonName"
         android:hint="Name"
         android:ems="10"
-        android:id="@+id/txtUsername" />
+        android:id="@+id/txtUsername"
+        android:text="pipe" />
 
     <EditText
         android:id="@+id/txtLastName"
@@ -18,7 +19,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName" 
-        android:hint="Lastname"/>
+        android:hint="Lastname"
+        android:text="anillo"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -26,7 +28,8 @@
         android:inputType="textEmailAddress"
         android:ems="10"
         android:id="@+id/txtEmail"
-        android:hint="Email" />
+        android:hint="Email" 
+        android:text="T00020904@utbvirtual.edu.co"/>
 
     <EditText
         android:id="@+id/txtREmail"
@@ -34,7 +37,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:hint="Repeat Email" />
+        android:hint="Repeat Email"
+        android:text="T00020904@utbvirtual.edu.co" />
 
     <EditText
         android:layout_width="match_parent"
@@ -42,7 +46,8 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/txtPassword"
-        android:hint="Password" />
+        android:hint="Password"
+        android:text="123456" />
 
     <EditText
         android:id="@+id/txtRPassword"
@@ -50,7 +55,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
-        android:hint="Confirm Password" >
+        android:hint="Confirm Password" 
+        android:text="123456">
 
         <requestFocus />
     </EditText>
