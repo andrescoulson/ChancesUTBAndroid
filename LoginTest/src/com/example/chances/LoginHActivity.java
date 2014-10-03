@@ -91,7 +91,8 @@ public class LoginHActivity extends Activity {
 				if (jsonObject.getString("auth_token") != null) {
 
 					Intent itemIntent = new Intent(LoginHActivity.this,RegisterActivity.class);
-					LoginHActivity.this.startActivity(itemIntent);
+					itemIntent.putExtra(name, value)
+					startActivity(itemIntent);
 				}
 
 			} catch (JSONException e) {
