@@ -16,7 +16,9 @@ public class TabPagerAdapter extends FragmentPagerAdapter{
 		
 		switch (index) {
 		case 0:
-			return new ListChanceFragment();
+			return new ListaFragment();
+		case 1:
+			return new ListaFragment();
 		default:
 			break;
 		}

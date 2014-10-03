@@ -1,5 +1,6 @@
 package com.example.chances;
 
+
 import java.util.ArrayList;
 
 import org.apache.http.NameValuePair;
@@ -8,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -19,8 +21,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LoginHActivity extends Activity {
+	
 	EditText txtUsername;
 	EditText txtPass;
 	Button btnLogin;
@@ -28,71 +32,130 @@ public class LoginHActivity extends Activity {
 	TextView txtError;
 	String response = null;
 	JSONObject jsonObject;
+	boolean conexion;
 	private static String url = "http://ing-sis.jairoesc.com/sessions";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login_h);
+		
+		
 
 		txtUsername = (EditText) this.findViewById(R.id.txtUsername);
 		txtPass = (EditText) this.findViewById(R.id.txtPass);
 		btnLogin = (Button) this.findViewById(R.id.send);
 		txtError = (TextView) this.findViewById(R.id.lblMensaje);
+		
+		conexion = Conexion.verificaConexion(this);
+		
 
 		btnLogin.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
+				
+				if(!conexion)
+				{
+					Toast.makeText(getBaseContext(),
+				            "Comprueba tu conexión a Internet.... ", Toast.LENGTH_SHORT)
+				            .show();
+				}else{
+				
+								
 				String uname = txtUsername.getText().toString();
 				String pwd = txtPass.getText().toString();
-				validateUserTask task = new validateUserTask();
+				
+				validateUserTask task = new validateUserTask();				
 				task.execute(new String[] { uname, pwd });
+				
+				}
 
 			}
 		});
+		
 		txtRegister = (TextView) this.findViewById(R.id.txtRegister);
 		txtRegister.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				
+				if(!conexion)
+				{
+					Toast.makeText(getBaseContext(),
+				            "Comprueba tu conexión a Internet.... ", Toast.LENGTH_SHORT)
+				            .show();
+				}else{
 				Intent itemIntent = new Intent(LoginHActivity.this,
 						RegisterActivity.class);
 				LoginHActivity.this.startActivity(itemIntent);
 				finish();
-
+				}
 			}
 		});
 	}
 
 	private class validateUserTask extends AsyncTask<String, Void, String> {
+		
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			
+			ProgressDialog progressDialog = new ProgressDialog(LoginHActivity.this);
+	        progressDialog.setCancelable(true);
+	        progressDialog.setMessage("Loading...");
+	        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+	        progressDialog.setProgress(0);
+	        progressDialog.show();
+		}
+		
+
 		@Override
 		protected String doInBackground(String... params) {
-			// TODO Auto-generated method stub
+			
+		
 			ArrayList<NameValuePair> postParameters = new ArrayList<NameValuePair>();
+			
 			postParameters.add(new BasicNameValuePair("email", params[0]));
 			postParameters.add(new BasicNameValuePair("password", params[1]));
+			
 			String res = null;
+			
 			try {
-				response = CustomHttpClient
-						.executeHttpPost(url, postParameters);
+				
+				response = CustomHttpClient.executeHttpPost(url, postParameters);
 				res = response.toString();
 				Log.e("devuelto por servidor", res.toString());
 				res = res.replaceAll("\\s+", "");
+				
 			} catch (Exception e) {
+				
 				txtError.setText(e.toString());
+				
 			}
+			
 			return res;
+			
 		}// close doInBackground
 
 		@Override
 		protected void onPostExecute(String result) {
 
 			try {
+				
 				jsonObject = new JSONObject(result);
 				Log.e("JSONConvertido", jsonObject.toString());
+				
 				if (jsonObject.getString("auth_token") != null) {
+<<<<<<< HEAD
 
 					Intent itemIntent = new Intent(LoginHActivity.this,RegisterActivity.class);
 					itemIntent.putExtra(name, value)
 					startActivity(itemIntent);
+=======
+					
+					Intent MyIntent = new Intent(LoginHActivity.this,MainFragmentActivity.class);
+					startActivity(MyIntent);
+					finish();
+					
+>>>>>>> origin/master
 				}
 
 			} catch (JSONException e) {
