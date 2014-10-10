@@ -18,5 +18,13 @@ public class ValidarRegistro {
         return (expresionRegular.equals(cadenaAEvaluar));
         
     }
+	
+	// [A-Za-z][A-Za-z][A-Za-z][0-9][0-9]([A-Za-z]|[0-9])
+	public static boolean ValidarVehicle(String Validate_plate, int Validate_capacitity)
+	{
+		String expreRPlaca = "[A-Za-z][A-Za-z][A-Za-z][0-9][0-9]([A-Za-z]|[0-9])";
+		int capacity = 9;
+		return (Pattern.matches(expreRPlaca, Validate_plate) && (capacity<= Validate_capacitity));
+	}
 
 }

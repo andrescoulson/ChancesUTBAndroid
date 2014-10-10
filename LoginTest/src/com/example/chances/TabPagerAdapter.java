@@ -18,6 +18,8 @@ public class TabPagerAdapter extends FragmentPagerAdapter{
 		case 0:
 			return new ListaFragment();
 		case 1:
+			return new RegisterVehicle();
+		case 2:
 			return new ListaFragment();
 		default:
 			break;
@@ -28,7 +30,7 @@ public class TabPagerAdapter extends FragmentPagerAdapter{
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return 2;
+		return 3;
 	}
 	
 	
