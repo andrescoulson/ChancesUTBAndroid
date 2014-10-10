@@ -8,10 +8,15 @@ import org.apache.http.message.BasicNameValuePair;
 
 
 
+
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -39,6 +44,7 @@ public class RegisterVehicle extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		
+		
 		View view = inflater.inflate(R.layout.activity_register_vehicle, container, false);
 		List<String> list = new ArrayList<String>();
 		        list.add("Carro/Camioneta");
@@ -59,25 +65,23 @@ public class RegisterVehicle extends Fragment {
 		        android.R.layout.simple_spinner_dropdown_item);
 		
 		spiner.setAdapter(adaptador);
-		spiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+		
+	   spiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(
+			   ) {
 
-			@Override
-			public void onItemSelected(AdapterView<?> parent, View view,
-                    int position, long id) {
-				tipo = parent.getSelectedItemPosition();
-				tipo++;
-				Toast.makeText(getActivity(),
-						tipo,
-						Toast.LENGTH_SHORT).show();
-				
-			}
+				@Override
+				public void onItemSelected(AdapterView<?> parent, View view,
+						int position, long id) {
+					// TODO Auto-generated method stub
+					
+				}
 
-			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {
-				
-				
-			}
-		});
+				@Override
+				public void onNothingSelected(AdapterView<?> parent) {
+					// TODO Auto-generated method stub
+					
+				}
+	});
 		
 		btnR.setOnClickListener(new OnClickListener() {
 			
@@ -140,8 +144,26 @@ public class RegisterVehicle extends Fragment {
 			super.onPreExecute();
 		}
 		
+	}
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setHasOptionsMenu(true);
 	} 
 	
-	
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		inflater.inflate(R.menu.activity_itemdetail, menu);
+		
+
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		return super.onOptionsItemSelected(item);
+	}
+
 
 }
