@@ -10,7 +10,10 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,7 +36,10 @@ public class LoginHActivity extends Activity {
 	String response = null;
 	JSONObject jsonObject;
 	boolean conexion;
+	public static final String Token = "auth_token"; 
 	private static String url = "http://ing-sis.jairoesc.com/sessions";
+	SharedPreferences sharedpreferences;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +54,15 @@ public class LoginHActivity extends Activity {
 		txtError = (TextView) this.findViewById(R.id.lblMensaje);
 		
 		conexion = Conexion.verificaConexion(this);
+		//sharedpreferences = getSharedPreferences("token", Context.MODE_PRIVATE);
 		
+		/*if(sharedpreferences.contains(Token)){
+			
+			Intent MyIntent = new Intent(LoginHActivity.this,MainFragmentActivity.class);
+			startActivity(MyIntent);
+			finish();
+			
+		}*/
 
 		btnLogin.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -138,13 +152,16 @@ public class LoginHActivity extends Activity {
 
 		@Override
 		protected void onPostExecute(String result) {
-
+				//Editor editor = sharedpreferences.edit();
 			try {
 				
 				jsonObject = new JSONObject(result);
 				Log.e("JSONConvertido", jsonObject.toString());
 				
 				if (jsonObject.getString("auth_token") != null) {
+					
+					//editor.putString(Token, jsonObject.getString("auth_token").toString());
+					//editor.commit();
 			
 					Intent MyIntent = new Intent(LoginHActivity.this,MainFragmentActivity.class);
 					startActivity(MyIntent);
