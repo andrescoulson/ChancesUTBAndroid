@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    
+<EditText
+        android:id="@+id/txtDeparture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Departure"
+        android:inputType="textPersonName"
+        android:text="Departure" />
+
+    <EditText
+        android:id="@+id/txtDestination"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Destination"
+        android:inputType="textPersonName"
+        android:text="Destination" />
+    
+    <EditText
+        android:id="@+id/txtCapacity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Capacity"
+        android:text="Capacity" />
+    
+     <EditText
+        android:id="@+id/txtComments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Comments"
+        android:text="Comments" />
+
+    <EditText
+        android:id="@+id/txtRoute"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Route"
+        android:text="Route" >
+
+        <requestFocus />
+        
+    </EditText>
+    
+</LinearLayout>

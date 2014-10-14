@@ -30,7 +30,8 @@
         </activity>
         <activity
             android:name=".MainFragmentActivity"
-            android:label="@string/title_activity_main_fragment" >
+            android:label="@string/title_activity_main_fragment"
+             android:uiOptions="splitActionBarWhenNarrow" >
             
         </activity>
         <activity
