@@ -1,0 +1,81 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher"
+        android:layout_gravity="center" />
+
+    <EditText
+        android:id="@+id/txtPlate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="plate"
+        android:inputType="textPersonName"
+        android:text="plate" />
+
+    <EditText
+        android:id="@+id/txtColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Color"
+        android:inputType="textPersonName"
+        android:text="color" />
+
+    <EditText
+        android:id="@+id/txtBrand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Brand"
+        android:text="Brand" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/txtModel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Model"
+        android:text="Model" />
+
+    <EditText
+        android:id="@+id/txtCapacity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="Capacity"
+        android:text="Capacity" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tipo Vehiculo:" />
+
+    <Spinner
+        android:id="@+id/txtType"
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:prompt="@string/type_vehicle"
+        android:spinnerMode="dropdown" />
+"
+
+    <Button
+        android:id="@+id/btnRegisterV"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="Registrar" />
+
+</LinearLayout>
