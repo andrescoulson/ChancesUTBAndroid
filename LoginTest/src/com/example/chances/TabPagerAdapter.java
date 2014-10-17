@@ -20,7 +20,7 @@ public class TabPagerAdapter extends FragmentPagerAdapter{
 		case 1:
 			return new RegisterVehicle();
 		case 2:
-			return new ListaFragment();
+			return new ProfileFragment();
 		default:
 			break;
 		}
