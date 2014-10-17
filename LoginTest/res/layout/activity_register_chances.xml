@@ -2,6 +2,12 @@
    android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
+
+    <Spinner
+        android:id="@+id/spin_vehicle"
+        android:layout_width="match_parent"
+        android:spinnerMode="dropdown"
+         android:layout_height="34dp"/>
     
 <EditText
         android:id="@+id/txtDeparture"
@@ -20,22 +26,14 @@
         android:hint="Destination"
         android:inputType="textPersonName"
         android:text="Destination" />
-    
+
     <EditText
-        android:id="@+id/txtCapacity"
+        android:id="@+id/txtcapacity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Capacity"
-        android:text="Capacity" />
-    
-     <EditText
-        android:id="@+id/txtComments"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Comments"
-        android:text="Comments" />
+        android:inputType="number"
+        android:hint="capacity" />
 
     <EditText
         android:id="@+id/txtRoute"
@@ -48,5 +46,19 @@
         <requestFocus />
         
     </EditText>
+
+    <EditText
+        android:id="@+id/txtComments"
+        android:layout_width="match_parent"
+        android:layout_height="119dp"
+        android:ems="10"
+        android:hint="Comments"
+        android:text="Comments" />
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register" />
     
 </LinearLayout>
