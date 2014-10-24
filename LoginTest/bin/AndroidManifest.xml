@@ -38,6 +38,14 @@
             android:name=".ListChanceActivity"
             android:label="@string/title_activity_list_chance" >
         </activity>
+         <activity
+            android:name=".RegisterChance"
+            android:label="registroChance" >
+        </activity>
+        <activity
+            android:name=".RegisterVehicle"
+            android:label="registroVehicle" >
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
