@@ -54,7 +54,7 @@ public class LoginHActivity extends Activity {
 		txtError = (TextView) this.findViewById(R.id.lblMensaje);
 		
 		conexion = Conexion.verificaConexion(this);
-		//sharedpreferences = getSharedPreferences("token", Context.MODE_PRIVATE);
+		sharedpreferences = getSharedPreferences("token", Context.MODE_PRIVATE);
 		
 		/*if(sharedpreferences.contains(Token)){
 			
@@ -152,16 +152,18 @@ public class LoginHActivity extends Activity {
 
 		@Override
 		protected void onPostExecute(String result) {
-				//Editor editor = sharedpreferences.edit();
+			
+			Editor editor = sharedpreferences.edit();
 			try {
+				
 				
 				jsonObject = new JSONObject(result);
 				Log.e("JSONConvertido", jsonObject.toString());
 				
 				if (jsonObject.getString("auth_token") != null) {
 					
-					//editor.putString(Token, jsonObject.getString("auth_token").toString());
-					//editor.commit();
+					editor.putString(Token, jsonObject.getString("auth_token").toString());
+					editor.commit();
 			
 					Intent MyIntent = new Intent(LoginHActivity.this,MainFragmentActivity.class);
 					startActivity(MyIntent);

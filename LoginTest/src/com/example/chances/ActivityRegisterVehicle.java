@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,6 +41,7 @@ public class ActivityRegisterVehicle extends Activity {
 	String tipo;
 	String response;
 	JSONObject jsonObject;
+	String token;
 	private static String url = "http://ing-sis.jairoesc.com/vehicle";
 
 	@Override
@@ -76,7 +78,8 @@ public class ActivityRegisterVehicle extends Activity {
 					int position, long id) {
 				String iten = parent.getItemAtPosition(position).toString();
 				
-				if(iten == "Carro" || iten == "Camioneta" )
+				Log.e("iten",iten);
+				if(iten == "Carro/Camioneta" )
 					tipo = "1";
 				else
 				if(iten == "Moto" )
@@ -96,23 +99,28 @@ public class ActivityRegisterVehicle extends Activity {
 			}
 		});
 
-		
+		SharedPreferences Token = getSharedPreferences("token",MODE_PRIVATE);
+		 token = Token.getString("auth_token", "NoToken");
 		btnR.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				if (ValidarRegistro.ValidarVehicle(plate.getText().toString(),
-						Integer.parseInt(capacity.getText().toString()))) {
+						Integer.parseInt(capacity.getText().toString())) && token != "NoToken") {
 					String placa = plate.getText().toString();
 					String Color = color.getText().toString();
 					String marca = brand.getText().toString();
 					String modelo = model.getText().toString();
-					String capacidad = (capacity.getText().toString());
-					String type = tipo;					 
-					String Token = getSharedPreferences("token", Context.MODE_PRIVATE).toString();
+					String capacidad = capacity.getText().toString();
+					String type = tipo;	
+					
+				
+					
+					Log.e("token",token);
+					Log.e("tipo",tipo);
 
 					validateRegisterTask task = new validateRegisterTask();
 					task.execute(new String[] { placa, Color, marca, modelo, capacidad,
-							type,Token });
+							type,token });
 
 				} else {
 
@@ -186,7 +194,9 @@ public class ActivityRegisterVehicle extends Activity {
 						@Override
 						public void onClick(DialogInterface arg0, int arg1) {
 							
-							arg0.cancel();
+							Intent myintent = new Intent(ActivityRegisterVehicle.this , MainFragmentActivity.class);
+							startActivity(myintent);
+							//arg0.cancel();
 						}
 						
 					});

@@ -17,7 +17,7 @@
         android:ems="10"
         android:hint="plate"
         android:inputType="textPersonName"
-        android:text="plate" />
+        android:text="pla456" />
     <requestFocus />
 
     <EditText
@@ -55,7 +55,7 @@
         android:ems="10"
         android:inputType="number"
         android:hint="Capacity"
-        android:text="Capacity" />
+        android:text="7" />
 
     <TextView
         android:layout_width="wrap_content"

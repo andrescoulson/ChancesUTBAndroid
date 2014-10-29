@@ -36,11 +36,15 @@
         </activity>
         <activity
             android:name=".ListChanceActivity"
-            android:label="@string/title_activity_list_chance" >
+            android:label="Lista Chances" >
         </activity>
          <activity
             android:name=".RegisterChance"
-            android:label="registroChance" >
+            android:label="registro Chance" >
+        </activity>
+        <activity
+            android:name=".ActivityRegisterVehicle"
+            android:label="registro Vehiculo" >
         </activity>
 
     </application>
