@@ -11,10 +11,21 @@
         android:layout_gravity="center" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/txtNameProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Large Text"
+        android:hint="Text Large"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:hint="Text Large"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </LinearLayout>
