@@ -12,6 +12,7 @@
         android:ems="10"
         android:id="@+id/txtUsername"
         android:text="pipe" />
+     <requestFocus />
 
     <EditText
         android:id="@+id/txtLastName"
@@ -58,7 +59,7 @@
         android:hint="Confirm Password" 
         android:text="123456">
 
-        <requestFocus />
+       
     </EditText>
 
     <Button

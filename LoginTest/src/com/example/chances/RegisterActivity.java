@@ -1,20 +1,5 @@
 package com.example.chances;
 
-import android.app.Activity;
-import android.app.AlertDialog.Builder;
-import android.app.ProgressDialog;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.view.View;
-import android.content.DialogInterface;
-import android.content.Intent;
-
 import java.util.ArrayList;
 
 import org.apache.http.NameValuePair;
@@ -22,8 +7,21 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.os.AsyncTask;
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class RegisterActivity extends Activity {
 
@@ -98,6 +96,7 @@ public class RegisterActivity extends Activity {
 
 	// tarea para registrar usuario nuevo
 	private class validateRegisterTask extends AsyncTask<String, Void, String> {
+		ProgressDialog progressDialog = new ProgressDialog(RegisterActivity.this);
 
 		@Override
 		protected String doInBackground(String... params) {
@@ -131,8 +130,9 @@ public class RegisterActivity extends Activity {
 		}
 
 		@Override
-		protected void onPostExecute(String result) {		
+		protected void onPostExecute(String result) {
 			
+			progressDialog.dismiss();			
 			AlertDialog alertDialog = new AlertDialog.Builder(RegisterActivity.this).create();
 			
 			
@@ -141,7 +141,7 @@ public class RegisterActivity extends Activity {
 				jsonObject = new JSONObject(result);
 				Log.e("JSONConvertido", jsonObject.toString());
 				
-				if(jsonObject != null){
+				if(jsonObject.getString("email") == null){
 					
 					
 					alertDialog.setTitle("Registro Exitoso");
@@ -162,13 +162,28 @@ public class RegisterActivity extends Activity {
 					alertDialog.show();
 				
 				
-				}					       				
+				}
+				else
+				{
+					alertDialog.setTitle("Registro Fallido");
+					alertDialog.setMessage("Usuario ya esta Registrado");
+					alertDialog.setButton(-2, "OK",new DialogInterface.OnClickListener()
+					{
+
+						@Override
+						public void onClick(DialogInterface arg0, int arg1) {
+							
+							arg0.cancel();
+						}
+						
+					});
+					
+					alertDialog.show();
+				}
 
 			} catch (JSONException e) {
 				Log.e("ERROR", result);
-				Toast.makeText(getBaseContext(),
-						"ERROR no c de q.... ",
-						Toast.LENGTH_SHORT).show();
+				
 				}
 		}
 
@@ -176,9 +191,9 @@ public class RegisterActivity extends Activity {
 		protected void onPreExecute() {
 			super.onPreExecute();
 			
-			ProgressDialog progressDialog = new ProgressDialog(RegisterActivity.this);
+			
 	        progressDialog.setCancelable(true);
-	        progressDialog.setMessage("Loading...");
+	        progressDialog.setMessage("Enviando...");
 	        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 	        progressDialog.setProgress(0);
 	        progressDialog.setMax(5);

@@ -5,10 +5,18 @@ import java.util.List;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,7 +37,10 @@ public class ActivityRegisterVehicle extends Activity {
 	EditText model;
 	EditText capacity;
 	Button btnR;
-	int tipo;
+	String tipo;
+	String response;
+	JSONObject jsonObject;
+	private static String url = "http://ing-sis.jairoesc.com/vehicle";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +59,8 @@ public class ActivityRegisterVehicle extends Activity {
 		capacity = (EditText) this.findViewById(R.id.txtCapacity);
 		spiner = (Spinner) this.findViewById(R.id.txtType);
 		btnR = (Button) this.findViewById(R.id.btnRegisterV);
+		
+		
 		ArrayAdapter<String> adaptador = new ArrayAdapter<String>(
 				getBaseContext(),
 				android.R.layout.simple_spinner_dropdown_item, list);
@@ -61,8 +74,19 @@ public class ActivityRegisterVehicle extends Activity {
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
-
+				String iten = parent.getItemAtPosition(position).toString();
+				
+				if(iten == "Carro" || iten == "Camioneta" )
+					tipo = "1";
+				else
+				if(iten == "Moto" )
+					tipo = "2";
+				else
+				if(iten == "Moto" )
+					tipo = "3";
+				
+					
+					
 			}
 
 			@Override
@@ -72,6 +96,7 @@ public class ActivityRegisterVehicle extends Activity {
 			}
 		});
 
+		
 		btnR.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -80,12 +105,14 @@ public class ActivityRegisterVehicle extends Activity {
 					String placa = plate.getText().toString();
 					String Color = color.getText().toString();
 					String marca = brand.getText().toString();
+					String modelo = model.getText().toString();
 					String capacidad = (capacity.getText().toString());
-					String type = Integer.toString(tipo);
+					String type = tipo;					 
+					String Token = getSharedPreferences("token", Context.MODE_PRIVATE).toString();
 
 					validateRegisterTask task = new validateRegisterTask();
-					task.execute(new String[] { placa, Color, marca, capacidad,
-							type });
+					task.execute(new String[] { placa, Color, marca, modelo, capacidad,
+							type,Token });
 
 				} else {
 
@@ -99,33 +126,92 @@ public class ActivityRegisterVehicle extends Activity {
 	}
 	
 	private class validateRegisterTask extends AsyncTask<String, Void, String>{
+		
+		ProgressDialog progressDialog = new ProgressDialog(ActivityRegisterVehicle.this);
+       
 
 		@Override
 		protected String doInBackground(String... params) {
+			
 			ArrayList<NameValuePair> postParameters = new ArrayList<NameValuePair>();
+			
 			postParameters.add(new BasicNameValuePair("plate", params[0]));
 			postParameters.add(new BasicNameValuePair("color", params[1]));
 			postParameters.add(new BasicNameValuePair("brand", params[2]));
 			postParameters.add(new BasicNameValuePair("model", params[3]));
 			postParameters.add(new BasicNameValuePair("capacity", params[4]));
 			postParameters.add(new BasicNameValuePair("type", params[5]));
+			postParameters.add(new BasicNameValuePair("auth-token", params[6]));
 			
+			String res = null;
+			
+			try {
+				
+				response = CustomHttpClient.executeHttpPost(url, postParameters);
+				res = response.toString();
+				Log.e("devuelto por servidor", res.toString());
+				res = res.replaceAll("\\s+", "");
+				
+			} catch (Exception e) {
+				
+				Log.e("error", e.toString());
+				
+			}
 
 
 			
-			return null;
+			return res;
 		}
 
 		@Override
 		protected void onPostExecute(String result) {
-			// TODO Auto-generated method stub
 			super.onPostExecute(result);
+			
+			progressDialog.dismiss();
+			
+			AlertDialog alertDialog = new AlertDialog.Builder(ActivityRegisterVehicle.this).create();
+			
+			try {
+				
+				jsonObject = new JSONObject(result);
+				Log.e("JSONConvertidoVehicle", jsonObject.toString());
+				
+				if(jsonObject != null)
+				{
+					alertDialog.setTitle("Registro Exitoso");
+					alertDialog.setMessage("Aceptar");
+					alertDialog.setButton(-1, "OK",new DialogInterface.OnClickListener()
+					{
+
+						@Override
+						public void onClick(DialogInterface arg0, int arg1) {
+							
+							arg0.cancel();
+						}
+						
+					});
+					
+					alertDialog.show();
+					
+				}
+				
+				
+			} catch (Exception e) {
+				Log.e("ERRORVehicle", e.toString());
+			}
+			
 		}
 
 		@Override
 		protected void onPreExecute() {
-			// TODO Auto-generated method stub
 			super.onPreExecute();
+			
+	        progressDialog.setCancelable(true);
+	        progressDialog.setMessage("Enviando...");
+	        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+	        progressDialog.setProgress(0);
+	        progressDialog.setMax(20);
+	        progressDialog.show();
 		}
 		
 	}
