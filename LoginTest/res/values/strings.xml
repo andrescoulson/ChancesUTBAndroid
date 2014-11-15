@@ -9,5 +9,7 @@
     <string name="title_activity_action_bar">ActionBar</string>
     <string name="type_vehicle">Tipo Vehiculo</string>
     <string name="title_activity_activity_register_vehicle">Registrar Vehicle</string>
+    <string name="title_activity_perfil_vehicle">PerfilVehicleActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>
