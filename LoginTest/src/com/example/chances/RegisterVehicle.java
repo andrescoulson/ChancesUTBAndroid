@@ -15,6 +15,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.DataSetObserver;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -30,6 +32,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -46,6 +49,10 @@ public class RegisterVehicle extends Fragment {
 	JSONObject jsonObject;
 	
 	String response;
+	
+	 GridView gridView;
+	 ArrayList<Item> gridArray = new ArrayList<Item>();
+	 CustomGridViewAdapter customGridAdapter;
 
 	
 	@Override
@@ -62,9 +69,14 @@ public class RegisterVehicle extends Fragment {
 		Log.e("url",url+token);
 		task.execute(url+token);
 		
+		Bitmap homeIcon = BitmapFactory.decodeResource(this.getResources(),R.drawable.ic_launcher );
+		  
+		gridArray.add(new Item(homeIcon,"Home"));
+		gridArray.add(new Item(homeIcon,"H"));
+		gridArray.add(new Item(homeIcon,"He"));
+		gridArray.add(new Item(homeIcon,"Ho"));
 		
-		
-		ArrayList<ListaEntrada> datos = new ArrayList<ListaEntrada>();
+		/*ArrayList<ListaEntrada> datos = new ArrayList<ListaEntrada>();
 		datos.add(new ListaEntrada(R.drawable.ic_launcher, "Lorem ipsum",
 				"Lorem ipsum,Lorem ipsum,Lorem ipsum,Lorem ipsum"));
 		
@@ -102,8 +114,11 @@ public class RegisterVehicle extends Fragment {
 			}
 			
 			
-		});
+		});*/
 		
+		gridView = (GridView) view.findViewById(R.id.gridView);
+		 customGridAdapter = new CustomGridViewAdapter(view.getContext(), R.layout.row_grid, gridArray);
+		 gridView.setAdapter(customGridAdapter);
 		return view;
 		
 	}
