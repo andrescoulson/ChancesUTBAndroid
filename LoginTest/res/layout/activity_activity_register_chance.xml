@@ -1,0 +1,90 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/txtFee"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/txtDate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date" >
+
+        
+    </EditText>
+
+    <EditText
+        android:id="@+id/txtHour"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="time" >
+
+        
+    </EditText>
+
+    <EditText
+        android:id="@+id/txtDestinatio"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10" >
+
+       
+    </EditText>
+
+    <EditText
+        android:id="@+id/txtDeparture"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10" >
+
+        
+    </EditText>
+
+    <EditText
+        android:id="@+id/txtCapacity"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number" >
+
+        
+    </EditText>        
+    </EditText>
+
+    <EditText
+        android:id="@+id/txtComents"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:ems="10" />
+
+    <Spinner
+        android:id="@+id/spinRoute"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <Spinner
+        android:id="@+id/spinVehicle"
+        android:layout_width="145dp"
+        android:layout_height="wrap_content" />
+     <Button
+        android:id="@+id/btnRegisteChance"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="Registrar" />
+
+</LinearLayout>
+

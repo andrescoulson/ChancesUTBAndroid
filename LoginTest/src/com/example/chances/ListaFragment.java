@@ -1,5 +1,6 @@
 package com.example.chances;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -98,8 +99,17 @@ public class ListaFragment extends Fragment {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// TODO Auto-generated method stub
-		return super.onOptionsItemSelected(item);
+		
+		switch (item.getItemId()) {
+		case R.id.add_item:
+			Intent myintent= new Intent(getActivity(),ActivityRegisterVehicle.class);
+			startActivity(myintent); 
+			getActivity().overridePendingTransition(R.anim.acelerate,R.anim.desacelerate);
+			return true;
+
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
 
 	

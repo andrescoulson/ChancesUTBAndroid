@@ -11,5 +11,6 @@
     <string name="title_activity_activity_register_vehicle">Registrar Vehicle</string>
     <string name="title_activity_perfil_vehicle">PerfilVehicleActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_activity_register_chance">ActivityRegisterChance</string>
 
 </resources>
