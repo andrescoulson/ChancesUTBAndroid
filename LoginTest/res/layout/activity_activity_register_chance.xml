@@ -19,8 +19,6 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="date" >
-
-        
     </EditText>
 
     <EditText
@@ -29,8 +27,6 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="time" >
-
-        
     </EditText>
 
     <EditText
@@ -38,8 +34,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:ems="10" >
-
-       
     </EditText>
 
     <EditText
@@ -47,8 +41,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:ems="10" >
-
-        
     </EditText>
 
     <EditText
@@ -57,27 +49,27 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="number" >
-
-        
-    </EditText>        
     </EditText>
 
     <EditText
         android:id="@+id/txtComents"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:ems="10" />
+        android:ems="10" >
+    </EditText>
 
     <Spinner
         android:id="@+id/spinRoute"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="34dp"
+        />
 
     <Spinner
         android:id="@+id/spinVehicle"
-        android:layout_width="145dp"
-        android:layout_height="wrap_content" />
-     <Button
+        android:layout_width="wrap_content"
+        android:layout_height="34dp" />
+
+    <Button
         android:id="@+id/btnRegisteChance"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="match_parent"
@@ -87,4 +79,3 @@
         android:text="Registrar" />
 
 </LinearLayout>
-
