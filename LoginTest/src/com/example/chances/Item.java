@@ -9,6 +9,7 @@ public class Item {
 	
 	public Item(Bitmap image, String title) {
 		super();
+		
 		this.image = image;
 		this.title = title;
 	}

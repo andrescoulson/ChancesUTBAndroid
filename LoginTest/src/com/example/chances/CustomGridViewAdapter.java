@@ -23,6 +23,7 @@ public class CustomGridViewAdapter extends ArrayAdapter<Item> {
 			  this.layoutResourceId = layoutResourceId;
 			  this.context = context;
 			  this.data = data;
+			  
 			 }
 
 	@Override
