@@ -102,7 +102,7 @@ public class ListaFragment extends Fragment {
 		
 		switch (item.getItemId()) {
 		case R.id.add_item:
-			Intent myintent= new Intent(getActivity(),ActivityRegisterVehicle.class);
+			Intent myintent= new Intent(getActivity(),ActivityRegisterChance.class);
 			startActivity(myintent); 
 			getActivity().overridePendingTransition(R.anim.acelerate,R.anim.desacelerate);
 			return true;
