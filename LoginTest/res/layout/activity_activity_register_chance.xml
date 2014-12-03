@@ -8,6 +8,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:text="1000"
         android:inputType="number" >
 
         <requestFocus />
@@ -18,6 +19,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:text="2014/12/20"
         android:inputType="date" >
     </EditText>
 
@@ -26,6 +28,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:text="21:00"
         android:inputType="time" >
     </EditText>
 
@@ -33,6 +36,7 @@
         android:id="@+id/txtDestinatio"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:text="destinatario"
         android:ems="10" >
     </EditText>
 
@@ -40,6 +44,7 @@
         android:id="@+id/txtDeparture"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:text="departure"
         android:ems="10" >
     </EditText>
 
@@ -48,6 +53,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:text="4"
         android:inputType="number" >
     </EditText>
 
@@ -55,6 +61,7 @@
         android:id="@+id/txtComents"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:text="comentarios"
         android:ems="10" >
     </EditText>
 

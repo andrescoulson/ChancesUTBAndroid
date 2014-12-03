@@ -10,8 +10,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -54,10 +57,10 @@ public class ActivityRegisterChance extends Activity {
 		fee = (EditText) this.findViewById(R.id.txtFee);
 		date = (EditText) this.findViewById(R.id.txtDate);
 		hour = (EditText) this.findViewById(R.id.txtHour);
-		destination = (EditText) this.findViewById(R.id.txtDestination);
+		destination = (EditText) this.findViewById(R.id.txtDestinatio);
 		departure = (EditText) this.findViewById(R.id.txtDeparture);
 		capacity = (EditText) this.findViewById(R.id.txtCapacity);
-		comments = (EditText) this.findViewById(R.id.txtComments);
+		comments = (EditText) this.findViewById(R.id.txtComents);
 		spiner = (Spinner) this.findViewById(R.id.spinVehicle);
 		route = (Spinner) this.findViewById(R.id.spinRoute);
 		btnRChance = (Button) this.findViewById(R.id.btnRegisteChance);
@@ -89,7 +92,7 @@ public class ActivityRegisterChance extends Activity {
 					tipo = "2";
 				else if (iten == "Bosque")
 					tipo = "3";
-				else if (iten == "otros")
+				else if (iten == "Otros")
 					tipo = "4";
 				else
 					tipo = "0";
@@ -152,7 +155,7 @@ public class ActivityRegisterChance extends Activity {
 
 			} catch (Exception e) {
 
-				Log.e("error", res);
+				Log.e("error", e.toString());
 
 			}
 
@@ -221,6 +224,7 @@ public class ActivityRegisterChance extends Activity {
 	}
 	
 	private class ChancepostTask extends AsyncTask<String, Void, String>{
+		ProgressDialog progressDialog = new ProgressDialog(ActivityRegisterChance.this);
 
 		@Override
 		protected String doInBackground(String... params) {
@@ -244,8 +248,8 @@ public class ActivityRegisterChance extends Activity {
 			try{
 				
 				respuesta = CustomHttpClient.executeHttpPost(url, postParameters);
-				res = response.toString();
-				Log.e("Resp Chances servidor", res.toString());
+				res = respuesta.toString();
+				Log.e("Resp Chances servidor chance", res.toString());
 				res = res.replaceAll("\\s+", "");
 				
 				
@@ -257,14 +261,61 @@ public class ActivityRegisterChance extends Activity {
 
 		@Override
 		protected void onPostExecute(String result) {
-			// TODO Auto-generated method stub
-			super.onPostExecute(result);
+			progressDialog.dismiss();
+			AlertDialog alertDialog = new AlertDialog.Builder(ActivityRegisterChance.this).create();
+			
+			try {
+
+				JSONObject j = new JSONObject(result);
+				Log.e("message",j.getString("message").toString());
+				
+				if(j.getString("message").toString().equals("Chancecreated.")){
+					
+					
+					alertDialog.setTitle("Registro Exitoso");
+					alertDialog.setMessage("Aceptar");
+					alertDialog.setButton(-1, "OK",new DialogInterface.OnClickListener()
+					{
+
+						@Override
+						public void onClick(DialogInterface arg0, int arg1) {
+							
+							Intent itemIntent = new Intent(ActivityRegisterChance.this,MainFragmentActivity.class);
+							startActivity(itemIntent);
+						}
+						
+					});
+					
+					alertDialog.show();
+				
+				
+				}
+				else
+				{
+					alertDialog.setTitle("Registro Fallido");
+					alertDialog.setMessage("Chance no fue Creado");
+					alertDialog.setButton(-2, "OK",new DialogInterface.OnClickListener()
+					{
+
+						@Override
+						public void onClick(DialogInterface arg0, int arg1) {
+							
+							arg0.cancel();
+						}
+						
+					});
+					
+					alertDialog.show();
+				}
+			}catch(JSONException e){Log.e("Error",e.toString());}
+		
+			
 		}
 
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			ProgressDialog progressDialog = new ProgressDialog(ActivityRegisterChance.this);
+			
 	        progressDialog.setCancelable(true);
 	        progressDialog.setMessage("Enviando...");
 	        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
