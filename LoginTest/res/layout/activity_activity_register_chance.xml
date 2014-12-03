@@ -4,23 +4,27 @@
     android:orientation="vertical" >
 
     <EditText
-        android:id="@+id/txtFee"
+        android:id="@+id/txtDestinatio"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:text="1000"
-        android:inputType="number" >
+        android:hint="Destino" />
 
-        <requestFocus />
-    </EditText>
+    <EditText
+        android:id="@+id/txtDeparture"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Salida" />
 
     <EditText
         android:id="@+id/txtDate"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:text="2014/12/20"
+        android:hint="Fecha de salida"
         android:inputType="date" >
+
     </EditText>
 
     <EditText
@@ -28,24 +32,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:text="21:00"
+        android:hint="Hora de salida"
         android:inputType="time" >
-    </EditText>
 
-    <EditText
-        android:id="@+id/txtDestinatio"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="destinatario"
-        android:ems="10" >
-    </EditText>
-
-    <EditText
-        android:id="@+id/txtDeparture"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="departure"
-        android:ems="10" >
     </EditText>
 
     <EditText
@@ -53,19 +42,28 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:text="4"
+        android:hint="Capacidad"
         android:inputType="number" >
+
+        <requestFocus />
     </EditText>
+
+    <EditText
+        android:id="@+id/txtFee"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Precio"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/txtComents"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:text="comentarios"
-        android:ems="10" >
+        android:ems="10"
+        android:hint="Comentarios adicionales" >
+
     </EditText>
-
-
     
     <Spinner
         android:id="@+id/spinRoute"

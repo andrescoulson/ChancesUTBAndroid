@@ -47,6 +47,10 @@
             android:name=".PerfilVehicleActivity"
             android:label="@string/title_activity_perfil_vehicle" >
         </activity>
+        <activity
+            android:name=".ActivityRegisterChance"
+            android:label="@string/title_activity_activity_register_chance" >
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
