@@ -1,6 +1,7 @@
 package com.example.chances;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
@@ -27,6 +28,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -38,8 +40,9 @@ public class ActivityRegisterChance extends Activity {
 	private static String url = "http://ing-sis.jairoesc.com/chance";
 	String response, tipo,idvehicle;
 	String token;
-	Button btnRChance;
+	Button btnRChance,btnpicker;
 	List<String> vehiculos = new ArrayList<String>();
+	static final int DATE_PICKER_ID = 1111; 	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +67,9 @@ public class ActivityRegisterChance extends Activity {
 		spiner = (Spinner) this.findViewById(R.id.spinVehicle);
 		route = (Spinner) this.findViewById(R.id.spinRoute);
 		btnRChance = (Button) this.findViewById(R.id.btnRegisteChance);
+		
+		
+		
 
 		SharedPreferences Token = getSharedPreferences("token", MODE_PRIVATE);
 		token = Token.getString("auth_token", "NoToken");

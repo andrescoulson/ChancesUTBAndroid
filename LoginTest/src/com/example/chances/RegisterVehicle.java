@@ -9,6 +9,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.google.gson.Gson;
+
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
@@ -53,6 +55,7 @@ public class RegisterVehicle extends Fragment {
 	 GridView gridView;
 	 ArrayList<Item> gridArray = new ArrayList<Item>();
 	 CustomGridViewAdapter customGridAdapter;
+	 List<Vehiculos> vehicles = new ArrayList<Vehiculos>();
 
 	
 	@Override
@@ -69,56 +72,9 @@ public class RegisterVehicle extends Fragment {
 		Log.e("url",url+token);
 		task.execute(url+token);
 		
-		Bitmap homeIcon = BitmapFactory.decodeResource(this.getResources(),R.drawable.ic_launcher );
-		  
-		gridArray.add(new Item(homeIcon,"Home"));
-		gridArray.add(new Item(homeIcon,"H"));
-		gridArray.add(new Item(homeIcon,"He"));
-		gridArray.add(new Item(homeIcon,"Ho"));
 		
-		/*ArrayList<ListaEntrada> datos = new ArrayList<ListaEntrada>();
-		datos.add(new ListaEntrada(R.drawable.ic_launcher, "Lorem ipsum",
-				"Lorem ipsum,Lorem ipsum,Lorem ipsum,Lorem ipsum"));
-		
-		List = (ListView)view.findViewById(R.id.listViewVehicle);
-		List.setAdapter(new com.example.chances.ListAdapter(getActivity(),
-				R.layout.entrada, datos) {
-			
-			@Override
-			public void onEntrada(Object entrada, View view) {
-				
-				TextView Text_Top_entrada = (TextView) view
-						.findViewById(R.id.textView_superior);
-				Text_Top_entrada.setText(((ListaEntrada) entrada)
-						.get_TextoEncima());
-
-				TextView Text_Below = (TextView) view
-						.findViewById(R.id.textView_inferior);
-				Text_Below.setText(((ListaEntrada) entrada).get_TextoDebajo());
-
-				ImageView Imagen = (ImageView) view
-						.findViewById(R.id.imageView_image);
-				Imagen.setImageResource(((ListaEntrada) entrada).get_IdImagen());
-				
-				
-			}
-		});
-		
-		List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			
-		});*/
-		
-		gridView = (GridView) view.findViewById(R.id.gridView);
-		 customGridAdapter = new CustomGridViewAdapter(view.getContext(), R.layout.row_grid, gridArray);
-		 gridView.setAdapter(customGridAdapter);
+		 
+		 
 		return view;
 		
 	}
@@ -148,22 +104,44 @@ public class RegisterVehicle extends Fragment {
 		@Override
 		protected void onPostExecute(String result) {
 			
-				try {
-				
-				
-				jsonObject = new JSONObject(result);
-				Log.e("JSONConvertido", jsonObject.toString());
-											
-
-			} catch (JSONException e) {
-				Log.e("ERROR", "JSONERROR");
-
-			}
+				FillGridView(result);
 		}
 		
 		
 	}
 	
+	
+	public void FillGridView(String response) {
+		JSONObject json = null;
+		
+		try {
+			
+			Gson gson  = new Gson();
+			json = new JSONObject(response);
+			Log.e("JSONConvertido", json.toString());
+			JSONArray arrayjson = json.getJSONArray("vehicle");
+			for(int i=0;i<arrayjson.length();i++)
+			{
+				Bitmap homeIcon = BitmapFactory.decodeResource(this.getResources(),R.drawable.ic_vehicle );
+				String brand = arrayjson.getJSONObject(i).getString("brand");
+				String model = arrayjson.getJSONObject(i).getString("model");
+				String vehicleinfo = arrayjson.getJSONObject(i).toString();
+				
+				gridArray.add(new Item(homeIcon, brand+" "+model));
+				Vehiculos vehiculo = gson.fromJson(vehicleinfo, Vehiculos.class);
+				vehicles.add(vehiculo);
+			}
+			gridView = (GridView) getView().findViewById(R.id.gridView);
+			customGridAdapter = new CustomGridViewAdapter(getView().getContext(), R.layout.row_grid, gridArray);
+			gridView.setAdapter(customGridAdapter);	
+										
+
+		} catch (JSONException e) {
+			Log.e("ERROR", "JSONERROR");
+
+		}
+		
+	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
