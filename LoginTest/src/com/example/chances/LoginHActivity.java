@@ -56,13 +56,13 @@ public class LoginHActivity extends Activity {
 		conexion = Conexion.verificaConexion(this);
 		sharedpreferences = getSharedPreferences("token", Context.MODE_PRIVATE);
 		
-		/*if(sharedpreferences.contains(Token)){
+		if(sharedpreferences.contains(Token)){
 			
 			Intent MyIntent = new Intent(LoginHActivity.this,MainFragmentActivity.class);
 			startActivity(MyIntent);
 			finish();
 			
-		}*/
+		}
 
 		btnLogin.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
