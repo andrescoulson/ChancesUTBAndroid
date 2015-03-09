@@ -14,7 +14,7 @@
         android:id="@+id/txtNameProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Text Large"
+        android:hint="Nombre"
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
-        android:hint="Text Large"
+        android:hint="Telefono"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </LinearLayout>

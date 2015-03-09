@@ -85,7 +85,7 @@ public class ActivityRegisterVehicle extends Activity {
 				if(iten == "Moto" )
 					tipo = "2";
 				else
-				if(iten == "Moto" )
+				if(iten == "otro" )
 					tipo = "3";
 				
 					

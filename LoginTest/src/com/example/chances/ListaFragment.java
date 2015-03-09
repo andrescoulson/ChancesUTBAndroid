@@ -46,26 +46,38 @@ public class ListaFragment extends Fragment {
 		 ChancesGetTask task = new ChancesGetTask();
 		 task.execute(url+token);
 
-
+		 List = (ListView)view.findViewById(R.id.listView_listado);
 
 		
-		
+		 		
 
-		/*List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+		List.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> pariente, View view,
 					int posicion, long id) {
-				ListaEntrada Seleccion = (ListaEntrada) pariente
+				Chances Seleccion = (Chances) pariente
 						.getItemAtPosition(posicion);
 
-				CharSequence text = "Seleccionado: "
-						+ Seleccion.get_TextoDebajo();
+				CharSequence text = "Seleccionado: "+ Seleccion.getDeparture()
+					+ " "	+ Seleccion.getDestino();
 				Toast toast = Toast.makeText(getActivity(), text,
 						Toast.LENGTH_LONG);
 				toast.show();
-
+				
+				Intent myIntent = new Intent (getActivity(),AplyToChanceActivity.class);
+				myIntent.putExtra("salida",Seleccion.getDestino());
+				myIntent.putExtra("destino",Seleccion.getDeparture());
+				myIntent.putExtra("hora", Seleccion.getDate());
+				myIntent.putExtra("cupos", Seleccion.getCapacity());
+				myIntent.putExtra("precio",Seleccion.getRoute());
+				myIntent.putExtra("coment", Seleccion.getComents());
+				myIntent.putExtra("chanceid", Seleccion.getId());
+				
+				startActivity(myIntent);
+				getActivity().overridePendingTransition(R.anim.acelerate,R.anim.desacelerate);
+				
 			}
-		});*/
+		});
 		return view;
 	}
 	
@@ -114,6 +126,7 @@ public class ListaFragment extends Fragment {
 				int image = R.drawable.ic_launcher;
 				String texTop,textBelow;
 				String chanceinfo = arrayJson.getJSONObject(i).toString();
+				Log.e("datos chances creados",chanceinfo);
 				texTop = arrayJson.getJSONObject(i).getString("destination");
 				textBelow = arrayJson.getJSONObject(i).getString("departure");
 				
@@ -125,22 +138,22 @@ public class ListaFragment extends Fragment {
 			}
 			List = (ListView) getView().findViewById(R.id.listView_listado);
 			List.setAdapter(new com.example.chances.ListAdapter(getActivity(),
-					R.layout.entrada, datos) {
+					R.layout.entrada, chances) {
 
 				@Override
 				public void onEntrada(Object entrada, View view) {
 					TextView Text_Top_entrada = (TextView) view
 							.findViewById(R.id.textView_superior);
-					Text_Top_entrada.setText(((ListaEntrada) entrada)
-							.get_TextoEncima());
+					Text_Top_entrada.setText(((Chances) entrada)
+							.getDestino());
 
 					TextView Text_Below = (TextView) view
 							.findViewById(R.id.textView_inferior);
-					Text_Below.setText(((ListaEntrada) entrada).get_TextoDebajo());
+					Text_Below.setText(((Chances) entrada).getDeparture());
 
-					ImageView Imagen = (ImageView) view
+					/*ImageView Imagen = (ImageView) view
 							.findViewById(R.id.imageView_image);
-					Imagen.setImageResource(((ListaEntrada) entrada).get_IdImagen());
+					Imagen.setImageResource(((ListaEntrada) entrada).get_IdImagen());*/
 
 				}
 			});

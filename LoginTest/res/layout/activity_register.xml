@@ -10,7 +10,7 @@
         android:inputType="textPersonName"
         android:hint="Name"
         android:ems="10"
-        android:id="@+id/txtUsername">
+        android:id="@+id/txtUsername"/>
      <requestFocus />
 
     <EditText
@@ -73,4 +73,5 @@
         android:id="@+id/lblLogin"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"/>
+    
 </LinearLayout>

@@ -11,22 +11,26 @@
         android:layout_weight="0.05"/>
 
     <EditText
+        style="@style/EditTextStyle"
         android:id="@+id/txtUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Username">
+        android:hint="Username"
+        android:text="santiagomendozar@gmail.com">
 
         <requestFocus />
     </EditText>
 
     <EditText
+        style="@style/EditTextStyle"
         android:id="@+id/txtPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:text="sanmen" />
 
     <Button
         android:id="@+id/send"

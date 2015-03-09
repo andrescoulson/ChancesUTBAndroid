@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textSalida"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Salida" />
+
+    <TextView
+        android:id="@+id/textDestino"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Destino" />
+
+    <TextView
+        android:id="@+id/textHora"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Hora de Salida" />
+
+    <TextView
+        android:id="@+id/textCupo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Cupos" />
+
+    <TextView
+        android:id="@+id/textRuta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ruta" />
+
+    <TextView
+        android:id="@+id/textPrecio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Precio" />
+
+    <TextView
+        android:id="@+id/textComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Comentarios" />
+
+    <Button
+        android:id="@+id/btnAply"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Aplicar" />
+
+</LinearLayout>
