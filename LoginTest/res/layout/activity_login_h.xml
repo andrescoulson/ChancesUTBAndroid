@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Username"
-        android:text="santiagomendozar@gmail.com">
+        android:text="belkis_buelvas06@hotmail.com">
 
         <requestFocus />
     </EditText>
@@ -30,7 +30,7 @@
         android:ems="10"
         android:hint="password"
         android:inputType="textPassword"
-        android:text="sanmen" />
+        android:text="thomas4" />
 
     <Button
         android:id="@+id/send"

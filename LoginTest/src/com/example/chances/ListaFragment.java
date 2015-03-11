@@ -40,6 +40,9 @@ public class ListaFragment extends Fragment {
 		View view = inflater.inflate(R.layout.activity_list_chance, container,
 				false);
 		
+		/*getActivity().getActionBar().setDisplayShowHomeEnabled(false);
+		getActivity().getActionBar().setDisplayShowTitleEnabled(false);*/
+		
 		SharedPreferences Token  = getActivity().getSharedPreferences("token",Context.MODE_PRIVATE);
 		 token = Token.getString("auth_token", "NoToken");
 		 
@@ -65,13 +68,14 @@ public class ListaFragment extends Fragment {
 				toast.show();
 				
 				Intent myIntent = new Intent (getActivity(),AplyToChanceActivity.class);
-				myIntent.putExtra("salida",Seleccion.getDestino());
+				myIntent.putExtra("salida",Seleccion.getDestino().toString());
 				myIntent.putExtra("destino",Seleccion.getDeparture());
 				myIntent.putExtra("hora", Seleccion.getDate());
 				myIntent.putExtra("cupos", Seleccion.getCapacity());
-				myIntent.putExtra("precio",Seleccion.getRoute());
+				myIntent.putExtra("ruta",Seleccion.getRoute());
 				myIntent.putExtra("coment", Seleccion.getComents());
 				myIntent.putExtra("chanceid", Seleccion.getId());
+				myIntent.putExtra("precio", Seleccion.getFee());
 				
 				startActivity(myIntent);
 				getActivity().overridePendingTransition(R.anim.acelerate,R.anim.desacelerate);
@@ -93,7 +97,7 @@ public class ListaFragment extends Fragment {
 				
 				response = CustomHttpClient.executeHttpGet(params[0]);
 				res = response.toString();
-				Log.e("devuelto por servidor", res.toString());
+				//Log.e("devuelto por servidor", res.toString());
 				res = res.replaceAll("\\s+", "");
 				
 			} catch (Exception e) {
@@ -118,7 +122,7 @@ public class ListaFragment extends Fragment {
 		try {
 			Gson gson = new Gson();
 			json = new JSONObject(response);
-			Log.e("ChancesCreados", json.toString());
+			//Log.e("ChancesCreados", json.toString());
 			JSONArray arrayJson = json.getJSONArray("chances");
 			for(int i=0; i<arrayJson.length();i++)
 			{
@@ -126,7 +130,7 @@ public class ListaFragment extends Fragment {
 				int image = R.drawable.ic_launcher;
 				String texTop,textBelow;
 				String chanceinfo = arrayJson.getJSONObject(i).toString();
-				Log.e("datos chances creados",chanceinfo);
+				//Log.e("datos chances creados",chanceinfo);
 				texTop = arrayJson.getJSONObject(i).getString("destination");
 				textBelow = arrayJson.getJSONObject(i).getString("departure");
 				

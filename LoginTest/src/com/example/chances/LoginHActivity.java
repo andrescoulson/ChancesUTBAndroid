@@ -137,7 +137,7 @@ public class LoginHActivity extends Activity {
 				
 				response = CustomHttpClient.executeHttpPost(url, postParameters);
 				res = response.toString();
-				Log.e("devuelto por servidor", res.toString());
+				//Log.e("devuelto por servidor", res.toString());
 				res = res.replaceAll("\\s+", "");
 				
 			} catch (Exception e) {
@@ -158,7 +158,7 @@ public class LoginHActivity extends Activity {
 				
 				
 				jsonObject = new JSONObject(result);
-				Log.e("JSONConvertido", jsonObject.toString());
+				//Log.e("JSONConvertido", jsonObject.toString());
 				
 				if (jsonObject.getString("auth_token") != null) {
 					

@@ -19,6 +19,14 @@ public class Chances {
 		this.updated_at =update_at;
 	}
 	
+	public String getFee() {
+		return fee;
+	}
+
+	public void setFee(String fee) {
+		this.fee = fee;
+	}
+
 	public String getId()
 	{
 		return id;
