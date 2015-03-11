@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
+import com.chances.extras.CustomHttpClient;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;

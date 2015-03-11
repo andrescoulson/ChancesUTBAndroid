@@ -8,6 +8,9 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.chances.extras.Conexion;
+import com.chances.extras.CustomHttpClient;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;

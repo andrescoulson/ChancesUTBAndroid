@@ -10,6 +10,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.chances.extras.CustomHttpClient;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;

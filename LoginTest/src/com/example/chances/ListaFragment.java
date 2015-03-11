@@ -24,6 +24,9 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.chances.extras.Chances;
+import com.chances.extras.CustomHttpClient;
+import com.chances.extras.ListaEntrada;
 import com.google.gson.Gson;
 
 public class ListaFragment extends Fragment {
@@ -141,7 +144,7 @@ public class ListaFragment extends Fragment {
 				
 			}
 			List = (ListView) getView().findViewById(R.id.listView_listado);
-			List.setAdapter(new com.example.chances.ListAdapter(getActivity(),
+			List.setAdapter(new com.chances.extras.ListAdapter(getActivity(),
 					R.layout.entrada, chances) {
 
 				@Override
